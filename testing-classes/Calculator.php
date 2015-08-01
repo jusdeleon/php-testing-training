@@ -9,22 +9,30 @@ class Calculator {
     }
 
     public function add() {
-        foreach (func_get_args() as $number) {
-            if ( ! is_numeric($number)) {
-                throw new InvalidArgumentException;
-            }
-
-            $this->result += $number;
-        }
+        $this->calculateAll(func_get_args(), '+');
     }
 
     public function subtract() {
-        foreach (func_get_args() as $number) {
+        $this->calculateAll(func_get_args(), '-');
+    }
+
+    protected function calculateAll(array $numbers, $symbol) {
+        foreach ($numbers as $number) {
             if ( ! is_numeric($number)) {
                 throw new InvalidArgumentException;
             }
+            $this->calculate($number, $symbol);
+        }
+    }
 
-            $this->result -= $number;
+    protected function calculate($number, $symbol) {
+        switch ($symbol) {
+            case '+':
+                $this->result += $number;
+                break;
+            case '-':
+                $this->result -= $number;
+                break;
         }
     }
 
