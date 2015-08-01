@@ -13,26 +13,44 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testAddsNumbers() {
-        $this->calculator->add(5);
 
-        $this->assertSame(5, $this->calculator->getResult());
+        $this->calculator->setOperands(5);
+
+        $this->calculator->setOperation(new Addition);
+
+        $result = $this->calculator->calculate();
+
+        $this->assertSame(5, $result);
     }
     
     /**
      *  @expectedException InvalidArgumentException
      */
     public function testRequiresNumericValue() {
-        $this->calculator->add('This must throw an exception');
+        $this->calculator->setOperands('five');
+
+        $this->calculator->setOperation(new Addition);
+
+        $this->calculator->calculate();
     }
 
     public function testAcceptsMultipleArgs() {
-        $this->calculator->add(1, 2, 3, 4, 5);
+        $this->calculator->setOperands(1, 2, 3, 4, 5);
+
+        $this->calculator->setOperation(new Addition);
+
+        $this->calculator->calculate();
 
         $this->assertEquals(15, $this->calculator->getResult());
     }
 
     public function testSubstractsNumbers() {
-        $this->calculator->subtract(5);
+
+        $this->calculator->setOperands(5);
+
+        $this->calculator->setOperation(new Subtraction);
+
+        $this->calculator->calculate();
 
         $this->assertEquals(-5, $this->calculator->getResult());
     }

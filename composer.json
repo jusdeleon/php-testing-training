@@ -13,7 +13,10 @@
     },
     "autoload": {
         "classmap": [
-            "testing-classes/Calculator.php"
+            "testing-classes/Calculator.php",
+            "testing-classes/Operation.php",
+            "testing-classes/Addition.php",
+            "testing-classes/Subtraction.php"
         ],
         "files": [
             "testing-functions/functions.php"
