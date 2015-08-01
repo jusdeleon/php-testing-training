@@ -1,0 +1,19 @@
+{
+    "name": "jusdeleon/testing-functions",
+    "description": "Working along with Jeffrey Way's book, \"Laravel Testing Decoded\"",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Justin de Leon",
+            "email": "jusmdeleon@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "autoload": {
+        "files": [
+            "functions.php"
+        ]
+    }
+}
