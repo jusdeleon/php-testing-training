@@ -2,9 +2,9 @@
 
 class Calculator {
     
-    private $result;
+    private $result = null;
 
-    private $operands;
+    private $operands = [];
 
     private $operation;
 

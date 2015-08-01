@@ -10,9 +10,16 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
 
     public function testAddsNumbers() {
 
+        $mock = Mockery::mock('Addition');
+
+        $mock->shouldReceive('run')
+            ->once()
+            ->with(5, 0)
+            ->andReturn(5);
+
         $this->calculator->setOperands(5);
 
-        $this->calculator->setOperation(new Addition);
+        $this->calculator->setOperation($mock);
 
         $result = $this->calculator->calculate();
 
@@ -27,7 +34,7 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
 
         $this->calculator->setOperation(new Addition);
 
-        $result = $this->calculator->calculate();
+        $this->calculator->calculate();
     }
 
     public function testAcceptsMultipleArgs() {
@@ -51,6 +58,10 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(-5, $result);
     }
 
+    /**
+     * The next two tests are redundant, since we are now leveraging polymorphism.
+     * They're unneccesary.
+     */
     public function testMultipliesNumbers() {
         $this->calculator->setOperands(5, 5);
 
