@@ -8,10 +8,6 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
         $this->calculator = new Calculator;
     }
 
-    public function testResultDefaultsToZero() {
-        $this->assertSame(0, $this->calculator->getResult());
-    }
-
     public function testAddsNumbers() {
 
         $this->calculator->setOperands(5);
@@ -31,7 +27,7 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
 
         $this->calculator->setOperation(new Addition);
 
-        $this->calculator->calculate();
+        $result = $this->calculator->calculate();
     }
 
     public function testAcceptsMultipleArgs() {
@@ -39,9 +35,9 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
 
         $this->calculator->setOperation(new Addition);
 
-        $this->calculator->calculate();
+        $result = $this->calculator->calculate();
 
-        $this->assertEquals(15, $this->calculator->getResult());
+        $this->assertEquals(15, $result);
     }
 
     public function testSubstractsNumbers() {
@@ -50,9 +46,30 @@ class CalculatorTest extends PHPUnit_Framework_TestCase {
 
         $this->calculator->setOperation(new Subtraction);
 
-        $this->calculator->calculate();
+        $result = $this->calculator->calculate();
 
-        $this->assertEquals(-5, $this->calculator->getResult());
+        $this->assertEquals(-5, $result);
+    }
+
+    public function testMultipliesNumbers() {
+        $this->calculator->setOperands(5, 5);
+
+        $this->calculator->setOperation(new Multiplication);
+
+        $result = $this->calculator->calculate();
+
+        $this->assertEquals(25, $result);
+    }
+
+    public function testDividesNumbers()
+    {
+        $this->calculator->setOperands(25, 5);
+
+        $this->calculator->setOperation(new Division);
+
+        $result = $this->calculator->calculate();
+
+        $this->assertEquals(5, $result);
     }
 
 }

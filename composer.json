@@ -16,7 +16,9 @@
             "testing-classes/Calculator.php",
             "testing-classes/Operation.php",
             "testing-classes/Addition.php",
-            "testing-classes/Subtraction.php"
+            "testing-classes/Subtraction.php",
+            "testing-classes/Multiplication.php",
+            "testing-classes/Division.php"
         ],
         "files": [
             "testing-functions/functions.php"

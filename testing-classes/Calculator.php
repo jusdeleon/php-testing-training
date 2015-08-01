@@ -2,7 +2,7 @@
 
 class Calculator {
     
-    private $result = 0;
+    private $result;
 
     private $operands;
 
@@ -17,10 +17,6 @@ class Calculator {
             $this->result = $this->operation->run($operand, $this->result);
         }
 
-        return $this->result;
-    }
-
-    public function getResult() {
         return $this->result;
     }
 
