@@ -2,47 +2,39 @@
 
 class CalculatorTest extends PHPUnit_Framework_TestCase {
 
-    public function testInstance() {
-        new Calculator;
+    protected $calculator;
+
+    public function setUp() {
+        $this->calculator = new Calculator;
     }
 
     public function testResultDefaultsToZero() {
-        $calculator = new Calculator;
-
-        $this->assertSame(0, $calculator->getResult());
+        $this->assertSame(0, $this->calculator->getResult());
     }
 
     public function testAddsNumbers() {
-        $calculator = new Calculator;
+        $this->calculator->add(5);
 
-        $calculator->add(5);
-
-        $this->assertSame(5, $calculator->getResult());
+        $this->assertSame(5, $this->calculator->getResult());
     }
     
     /**
      *  @expectedException InvalidArgumentException
      */
     public function testRequiresNumericValue() {
-        $calculator = new Calculator;
-
-        $calculator->add('This must throw an exception');
+        $this->calculator->add('This must throw an exception');
     }
 
     public function testAcceptsMultipleArgs() {
-        $calculator = new Calculator;
+        $this->calculator->add(1, 2, 3, 4, 5);
 
-        $calculator->add(1, 2, 3, 4, 5);
-
-        $this->assertEquals(15, $calculator->getResult());
+        $this->assertEquals(15, $this->calculator->getResult());
     }
 
     public function testSubstractsNumbers() {
-        $calculator = new Calculator;
+        $this->calculator->subtract(5);
 
-        $calculator->subtract(5);
-
-        $this->assertEquals(-5, $calculator->getResult());
+        $this->assertEquals(-5, $this->calculator->getResult());
     }
 
 }
